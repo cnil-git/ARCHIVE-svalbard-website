@@ -1,4 +1,29 @@
-// Three JS Template
+///////////////////// Dumb-Downed Settings /////////////////////
+// Environment
+const flyingDotsColor = 0xeeeeee;
+const movingLineColors = 0xeeeeee;
+const floorColor = 0x000000;
+const fog1Color = 0x3500d3;
+const fog2Color = 0x0c0032;
+
+// Towers
+const numberOfTowers = 100;
+const towerColors = 0x000000;
+const towerLineColors = 0xffffff;
+const bouncingTowers = false;
+const funkyTowers = false;
+
+// Camera Panning
+const phaseThroughFloor = false;
+const cameraMovingSpeed = 0.0002;
+
+// MOVING LINES (aka "cars")
+const movingLinesWidth = 0.1;
+const movingLinesSpeed = 5;
+const numberOfMovingLines = 20;
+
+///////////////////////////////////////////////////////////////
+
 //----------------------------------------------------------------- BASIC parameters
 var renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -8,7 +33,6 @@ if (window.innerWidth > 800) {
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.shadowMap.needsUpdate = true;
   //renderer.toneMapping = THREE.ReinhardToneMapping;
-  //console.log(window.innerWidth);
 }
 //---
 
@@ -36,15 +60,15 @@ var smoke = new THREE.Object3D();
 var town = new THREE.Object3D();
 
 var createCarPos = true;
-var uSpeed = 0.001;
+var uSpeed = cameraMovingSpeed;
 
 //----------------------------------------------------------------- FOG background
 
-var setcolor = 0xf02050;
+var setcolor = fog1Color;
 
 scene.background = new THREE.Color(setcolor);
 scene.fog = new THREE.Fog(setcolor, 10, 16);
-//scene.fog = new THREE.FogExp2(setcolor, 0.05);
+scene.fog = new THREE.FogExp2(fog2Color, 0.05);
 //----------------------------------------------------------------- RANDOM Function
 function mathRandom(num = 8) {
   var numValue = -Math.random() * num + Math.random() * num;
@@ -55,12 +79,11 @@ var setTintNum = true;
 function setTintColor() {
   if (setTintNum) {
     setTintNum = false;
-    var setColor = 0x000000;
+    var setColor = towerColors;
   } else {
     setTintNum = true;
-    var setColor = 0x000000;
+    var setColor = towerColors;
   }
-  //setColor = 0x222222;
   return setColor;
 }
 
@@ -68,7 +91,7 @@ function setTintColor() {
 
 function init() {
   var segments = 2;
-  for (var i = 1; i < 100; i++) {
+  for (var i = 1; i < numberOfTowers; i++) {
     var geometry = new THREE.CubeGeometry(
       1,
       0,
@@ -79,22 +102,16 @@ function init() {
     );
     var material = new THREE.MeshStandardMaterial({
       color: setTintColor(),
-      wireframe: false,
-      //opacity:0.9,
-      //transparent:true,
-      //roughness: 0.3,
-      //metalness: 1,
       shading: THREE.SmoothShading,
-      //shading:THREE.FlatShading,
       side: THREE.DoubleSide,
     });
     var wmaterial = new THREE.MeshLambertMaterial({
-      color: 0xffffff,
+      color: towerLineColors,
       wireframe: true,
       transparent: true,
       opacity: 0.03,
-      side: THREE.DoubleSide /*,
-      shading:THREE.FlatShading*/,
+      side: THREE.DoubleSide,
+      shading: THREE.FlatShading,
     });
 
     var cube = new THREE.Mesh(geometry, material);
@@ -107,14 +124,36 @@ function init() {
     cube.receiveShadow = true;
     cube.rotationValue = 0.1 + Math.abs(mathRandom(8));
 
-    //floor.scale.x = floor.scale.z = 1+mathRandom(0.33);
+    floor.scale.x = floor.scale.z = 1 + mathRandom(0.33);
     floor.scale.y = 0.05; //+mathRandom(0.5);
     cube.scale.y = 0.1 + Math.abs(mathRandom(8));
-    //TweenMax.to(cube.scale, 1, {y:cube.rotationValue, repeat:-1, yoyo:true, delay:i*0.005, ease:Power1.easeInOut});
-    /*cube.setScale = 0.1+Math.abs(mathRandom());
-    
-    TweenMax.to(cube.scale, 4, {y:cube.setScale, ease:Elastic.easeInOut, delay:0.2*i, yoyo:true, repeat:-1});
-    TweenMax.to(cube.position, 4, {y:cube.setScale / 2, ease:Elastic.easeInOut, delay:0.2*i, yoyo:true, repeat:-1});*/
+
+    if (bouncingTowers) {
+      TweenMax.to(cube.scale, 1, {
+        y: cube.rotationValue,
+        repeat: -1,
+        yoyo: true,
+        delay: i * 0.005,
+        ease: Power1.easeInOut,
+      });
+
+      cube.setScale = 0.1 + Math.abs(mathRandom());
+
+      TweenMax.to(cube.scale, 4, {
+        y: cube.setScale,
+        ease: Elastic.easeInOut,
+        delay: 0.2 * i,
+        yoyo: true,
+        repeat: -1,
+      });
+      TweenMax.to(cube.position, 4, {
+        y: cube.setScale / 2,
+        ease: Elastic.easeInOut,
+        delay: 0.2 * i,
+        yoyo: true,
+        repeat: -1,
+      });
+    }
 
     var cubeWidth = 0.9;
     cube.scale.x = cube.scale.z = cubeWidth + mathRandom(1 - cubeWidth);
@@ -134,7 +173,7 @@ function init() {
   //----------------------------------------------------------------- Particular
 
   var gmaterial = new THREE.MeshToonMaterial({
-    color: 0xffff00,
+    color: flyingDotsColor,
     side: THREE.DoubleSide,
   });
   var gparticular = new THREE.CircleGeometry(0.01, 3);
@@ -164,7 +203,7 @@ function init() {
   pelement.rotation.x = (-90 * Math.PI) / 180;
   pelement.position.y = -0.001;
   pelement.receiveShadow = true;
-  //pelement.material.emissive.setHex(0xFFFFFF + Math.random() * 100000);
+  pelement.material.emissive.setHex(floorColor);
 
   city.add(pelement);
 }
@@ -194,7 +233,7 @@ function onDocumentTouchMove(event) {
     mouse.y = event.touches[0].pageY - window.innerHeight / 2;
   }
 }
-window.addEventListener("click", onMouseMove, false);
+window.addEventListener("mousemove", onMouseMove, false);
 window.addEventListener("touchstart", onDocumentTouchStart, false);
 window.addEventListener("touchmove", onDocumentTouchMove, false);
 
@@ -232,7 +271,7 @@ city.add(gridHelper);
 var generateCar = function () {};
 //----------------------------------------------------------------- LINES world
 
-var createCars = function (cScale = 2, cPos = 20, cColor = 0xffff00) {
+var createCars = function (cScale = 2, cPos = 20, cColor = movingLineColors) {
   var cMat = new THREE.MeshToonMaterial({
     color: cColor,
     side: THREE.DoubleSide,
@@ -273,15 +312,15 @@ var createCars = function (cScale = 2, cPos = 20, cColor = 0xffff00) {
 };
 
 var generateLines = function () {
-  for (var i = 0; i < 60; i++) {
-    createCars(0.1, 20);
+  for (var i = 0; i < numberOfMovingLines; i++) {
+    createCars(movingLinesWidth, movingLinesSpeed);
   }
 };
 
 //----------------------------------------------------------------- CAMERA position
 
 var cameraSet = function () {
-  createCars(0.1, 20, 0xffffff);
+  createCars(movingLinesWidth, movingLinesSpeed, movingLineColors);
   //TweenMax.to(camera.position, 1, {y:1+Math.random()*4, ease:Expo.easeInOut})
 };
 
@@ -296,16 +335,20 @@ var animate = function () {
   if (city.rotation.x < -0.05) city.rotation.x = -0.05;
   else if (city.rotation.x > 1) city.rotation.x = 1;
   var cityRotation = Math.sin(Date.now() / 5000) * 13;
-  //city.rotation.x = cityRotation * Math.PI / 180;
 
-  //console.log(city.rotation.x);
-  //camera.position.y -= (-(mouse.y * 20) - camera.rotation.y) * uSpeed;;
+  if (phaseThroughFloor) city.rotation.x = (cityRotation * Math.PI) / 180;
+  // camera.position.y -= (-(mouse.y * 20) - camera.rotation.y) * uSpeed;
 
   for (let i = 0, l = town.children.length; i < l; i++) {
     var object = town.children[i];
-    //object.scale.y = Math.sin(time*50) * object.rotationValue;
-    //object.rotation.y = (Math.sin((time/object.rotationValue) * Math.PI / 180) * 180);
-    //object.rotation.z = (Math.cos((time/object.rotationValue) * Math.PI / 180) * 180);
+
+    if (funkyTowers) {
+      object.scale.y = Math.sin(time * 50) * object.rotationValue;
+      object.rotation.y =
+        Math.sin(((time / object.rotationValue) * Math.PI) / 180) * 180;
+      object.rotation.z =
+        Math.cos(((time / object.rotationValue) * Math.PI) / 180) * 180;
+    }
   }
 
   smoke.rotation.y += 0.01;
