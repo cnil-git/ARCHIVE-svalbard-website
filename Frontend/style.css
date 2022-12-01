@@ -1,3 +1,8 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
 body {
   color: white;
   margin: 0;
@@ -25,4 +30,48 @@ h1::after {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.company-div {
+  display: flex;
+  align-items: inherit;
+}
+
+.logo-pic {
+  background-color: none;
+  filter: invert(99%) sepia(1%) saturate(2%) hue-rotate(343deg) brightness(104%)
+    contrast(100%);
+  width: 5rem;
+  margin: 5px 10px;
+}
+
+.nav-links {
+  display: flex;
+  padding-right: 10px;
+  align-items: center;
+}
+
+.links-list {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 0;
+  white-space: normal;
+  list-style-type: none;
+}
+
+.links-list,
+li {
+  margin-left: 10px;
+}
+
+.website-link {
+  color: white;
+  text-decoration: underline;
 }
