@@ -1,3 +1,8 @@
+@font-face {
+  font-family: frostSans;
+  src: url(fonts/Frost-Sans/Frost\ Sans\ Thin.otf);
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -10,6 +15,7 @@ body {
   background-color: black;
   cursor: crosshair;
   overflow: hidden;
+  position: relative;
 }
 
 .desc {
@@ -36,6 +42,7 @@ h1::after {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 10px 25px;
 }
 
 .company-div {
@@ -43,17 +50,9 @@ h1::after {
   align-items: inherit;
 }
 
-.logo-pic {
-  background-color: none;
-  filter: invert(99%) sepia(1%) saturate(2%) hue-rotate(343deg) brightness(104%)
-    contrast(100%);
-  width: 5rem;
-  margin: 5px 10px;
-}
-
 .nav-links {
   display: flex;
-  padding-right: 10px;
+  /* margin-right: 20px; */
   align-items: center;
 }
 
@@ -74,4 +73,23 @@ li {
 .website-link {
   color: white;
   text-decoration: underline;
+}
+
+header {
+  position: absolute;
+  width: 100vw;
+}
+
+.nav-title {
+  font-size: 2vw;
+  font-family: frostSans;
+  margin: none;
+}
+
+.logo-pic {
+  background-color: none;
+  filter: invert(99%) sepia(1%) saturate(2%) hue-rotate(343deg) brightness(104%)
+    contrast(100%);
+  width: 4rem;
+  margin: 0px 10px;
 }

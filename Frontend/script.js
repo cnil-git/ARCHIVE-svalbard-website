@@ -3,7 +3,7 @@
 const flyingDotsColor = 0xeeeeee;
 const movingLineColors = 0xeeeeee;
 const floorColor = 0x000000;
-const fog1Color = 0x3500d3;
+const fog1Color = 0x1c016e;
 const fog2Color = 0x0c0032;
 
 // Towers
@@ -15,12 +15,15 @@ const funkyTowers = false;
 
 // Camera Panning
 const phaseThroughFloor = false;
-const cameraMovingSpeed = 0.0002;
+const cameraMovingSpeed = 0.00007;
 
 // MOVING LINES (aka "cars")
 const movingLinesWidth = 0.1;
-const movingLinesSpeed = 5;
+const movingLinesSpeed = 4;
 const numberOfMovingLines = 20;
+
+// PARTICLES
+const dotQuantity = 300;
 
 ///////////////////////////////////////////////////////////////
 
@@ -67,8 +70,10 @@ var uSpeed = cameraMovingSpeed;
 var setcolor = fog1Color;
 
 scene.background = new THREE.Color(setcolor);
+
 scene.fog = new THREE.Fog(setcolor, 10, 16);
 scene.fog = new THREE.FogExp2(fog2Color, 0.05);
+
 //----------------------------------------------------------------- RANDOM Function
 function mathRandom(num = 8) {
   var numValue = -Math.random() * num + Math.random() * num;
@@ -179,7 +184,7 @@ function init() {
   var gparticular = new THREE.CircleGeometry(0.01, 3);
   var aparticular = 5;
 
-  for (var h = 1; h < 300; h++) {
+  for (var h = 1; h < dotQuantity; h++) {
     var particular = new THREE.Mesh(gparticular, gmaterial);
     particular.position.set(
       mathRandom(aparticular),
@@ -215,7 +220,7 @@ var mouse = new THREE.Vector2(),
 var intersected;
 
 function onMouseMove(event) {
-  event.preventDefault();
+  // if (event.target.classList.includes()) event.preventDefault();
   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 }

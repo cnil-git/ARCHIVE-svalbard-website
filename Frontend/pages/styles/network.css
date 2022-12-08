@@ -1,0 +1,20 @@
+/* ---- reset ---- */
+
+body {
+  margin: 0;
+  font: normal 75% Arial, Helvetica, sans-serif;
+  overflow: hidden;
+}
+
+/* ---- particles.js container ---- */
+
+#particles-js {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 110vw;
+  height: 110vh;
+  background-color: #050115;
+  background-position: 50% 50%;
+}
