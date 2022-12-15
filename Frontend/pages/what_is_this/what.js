@@ -140,10 +140,7 @@ function init() {
 
   // Motion mode
   //if (Modernizr && Modernizr.deviceorientation) {
-  if (
-    "ontouchstart" in document.documentElement &&
-    window.DeviceOrientationEvent
-  ) {
+  if ("" in document.documentElement && window.DeviceOrientationEvent) {
     console.log("Using device orientation");
     window.addEventListener(
       "deviceorientation",

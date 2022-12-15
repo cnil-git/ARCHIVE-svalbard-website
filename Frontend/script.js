@@ -2,13 +2,13 @@
 // Environment
 const flyingDotsColor = 0xeeeeee;
 const movingLineColors = 0xeeeeee;
-const floorColor = 0x000000;
+const floorColor = 0x0b0b11;
 const fog1Color = 0x1c016e;
 const fog2Color = 0x0c0032;
 
 // Towers
 const numberOfTowers = 100;
-const towerColors = 0x000000;
+const towerColors = 0x0b0b11;
 const towerLineColors = 0xffffff;
 const bouncingTowers = false;
 const funkyTowers = false;
@@ -18,12 +18,12 @@ const phaseThroughFloor = false;
 const cameraMovingSpeed = 0.00007;
 
 // MOVING LINES (aka "cars")
-const movingLinesWidth = 0.1;
+const movingLinesWidth = 0.01;
 const movingLinesSpeed = 4;
-const numberOfMovingLines = 20;
+const numberOfMovingLines = 10;
 
 // PARTICLES
-const dotQuantity = 300;
+const dotQuantity = 250;
 
 ///////////////////////////////////////////////////////////////
 

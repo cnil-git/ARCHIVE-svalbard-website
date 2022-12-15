@@ -1,13 +1,14 @@
 // Quick Changes
 const shouldTwinkle = false;
-const disperity = 2500;
+const disperity = 3500;
 const movingSpeed = 1;
+const numOfStars = 250;
 
 // ---- particles.js config ----
 particlesJS("particles-js", {
   particles: {
     number: {
-      value: 380,
+      value: numOfStars,
       density: {
         enable: true,
         value_area: disperity,
