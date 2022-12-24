@@ -7,8 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
+
 
 <body>
   <header>
@@ -21,15 +22,14 @@
       </div>
 
       <div class="topnav" id="myTopnav">
-        <a href="pages/what_is_this/what.html">About This</a>
-        <a href="pages/contact/contact.html">Contact</a>
-        <a href="pages/about/about.html">About Us</a>
+        <a href="#">About This</a>
+        <a href="#">Contact</a>
+        <a href="#">About Us</a>
         <a href="javascript:void(0);" class="icon" onclick="iconFunc()">
           <i class="fa fa-bars menu-icon"></i>
         </a>
       </div>
 
-      <!-- Yes, i did steal code from w3 schools and embed it as an internal script, what are you gonna do about it? -->
       <script>
         function iconFunc() {
           const x = document.getElementById("myTopnav");
@@ -49,7 +49,7 @@
 
   <article>
     <div class="title-div">
-      <h1><strong>Project Svalbard</strong></h1>
+      <h1 class="splash-title"><strong>Project Svalbard</strong></h1>
       <p class="desc">– The future is now –</p>
     </div>
   </article>

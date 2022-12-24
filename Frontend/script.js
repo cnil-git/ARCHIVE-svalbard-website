@@ -23,7 +23,7 @@ const movingLinesSpeed = 4;
 const numberOfMovingLines = 10;
 
 // PARTICLES
-const dotQuantity = 250;
+const dotQuantity = 150;
 
 ///////////////////////////////////////////////////////////////
 
