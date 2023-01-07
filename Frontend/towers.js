@@ -18,12 +18,12 @@ const phaseThroughFloor = false;
 const cameraMovingSpeed = 0.00007;
 
 // MOVING LINES (aka "cars")
-const movingLinesWidth = 0.01;
+const movingLinesWidth = 0.1;
 const movingLinesSpeed = 4;
-const numberOfMovingLines = 10;
+const numberOfMovingLines = 5;
 
 // PARTICLES
-const dotQuantity = 150;
+const dotQuantity = 100;
 
 ///////////////////////////////////////////////////////////////
 
