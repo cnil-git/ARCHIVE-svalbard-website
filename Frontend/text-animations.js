@@ -44,7 +44,7 @@ aboutLink.addEventListener("click", function () {
     <br/>
     <strong>Firey:</strong>
     <br/>
-    Firey, while not being a VJ/DJ himself such as Mylow, still believes in the impact that the VR music industry can have. Firey, who is a World Creator, also believes in the importance of great and unique experiences, especially in a VR world that is as large and as small as it is. Firey is the Co-Founder of Project Svalbard, a unique virtual music venue founded by him and his friend Mylow. “Project Svalbard is something different and special, and I’m so glad to be a part of it.”`;
+    Firey, while not being a VJ/DJ himself such as Mylow, still believes in the impact that the VR music industry can have. Firey, who is a World Creator, also believes in the importance of great and unique experiences, especially in a VR world that is as large and as small as it is. Firey is the Co-Founder of Project Svalbard, a unique virtual music venue founded by him and his friend Mylow. “Project Svalbard is something different and special, and I'm so glad to be a part of it.”`;
 });
 
 var startAnim = function (el, msg) {

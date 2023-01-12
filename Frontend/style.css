@@ -112,6 +112,7 @@ header {
   width: 100vw;
   background-color: #292929;
   opacity: 93%;
+  z-index: 100;
 }
 
 .logo-pic {
